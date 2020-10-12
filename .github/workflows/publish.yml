@@ -20,7 +20,7 @@ jobs:
       - uses: dotnet/nbgv@master
         with:
           setAllVars: true
-      - run: echo "NBGV_SemVer2 $NBGV_SemVer2"
+      - run: echo "Version $NBGV_NuGetPackageVersion"
 
       # Publish
       - name: publish on version change
@@ -40,7 +40,7 @@ jobs:
           # VERSION_REGEX: ^\s*<Version>(.*)<\/Version>\s*$
           
           # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
-          VERSION_STATIC: ${{NBGV_NuGetPackageVersion}}
+          VERSION_STATIC: ${NBGV_NuGetPackageVersion}
 
           # Flag to toggle git tagging, enabled by default
           TAG_COMMIT: false

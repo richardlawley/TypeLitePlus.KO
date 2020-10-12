@@ -17,6 +17,11 @@ jobs:
       #   with:
       #     dotnet-version: 3.1.200
 
+      - uses: dotnet/nbgv@master
+        with:
+          setAllVars: true
+      - run: echo "NBGV_SemVer2 $NBGV_SemVer2"
+
       # Publish
       - name: publish on version change
         id: publish_nuget
@@ -29,16 +34,16 @@ jobs:
           # PACKAGE_NAME: TypeLitePlus.KO
           
           # Filepath with version info, relative to root of repository & defaults to PROJECT_FILE_PATH
-          VERSION_FILE_PATH: Directory.Build.props
+          # VERSION_FILE_PATH: Directory.Build.props
 
           # Regex pattern to extract version info in a capturing group
           # VERSION_REGEX: ^\s*<Version>(.*)<\/Version>\s*$
           
           # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
-          # VERSION_STATIC: 1.0.0
+          VERSION_STATIC: $NBGV_NpmPackageVersion
 
           # Flag to toggle git tagging, enabled by default
-          # TAG_COMMIT: true
+          TAG_COMMIT: false
 
           # Format of the git tag, [*] gets replaced with actual version
           # TAG_FORMAT: v*

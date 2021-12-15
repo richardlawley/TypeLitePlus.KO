@@ -137,7 +137,7 @@ namespace TypeLitePlus.KO
                         }
                         if (ko)
                         {
-                            sb.AppendLineIndented($"{this.GetPropertyName(property)}: KnockoutObservableArray<{propTypeName}> = ko.observableArray([]);");
+                            sb.AppendLineIndented($"{this.GetPropertyName(property)}: ko.ObservableArray<{propTypeName}> = ko.observableArray([]);");
                         }
                         else
                         {
@@ -148,7 +148,7 @@ namespace TypeLitePlus.KO
                     {
                         if (ko)
                         {
-                            sb.AppendLineIndented($"{this.GetPropertyName(property)}: KnockoutObservable<{propTypeName}> = ko.observable(null);");
+                            sb.AppendLineIndented($"{this.GetPropertyName(property)}: ko.Subscribable<{propTypeName}> = ko.observable(null);");
                         }
                         else
                         {
@@ -192,10 +192,10 @@ namespace TypeLitePlus.KO
                     {
                         if (propTypeName.Length > 2 && propTypeName.Substring(propTypeName.Length - 2) == "[]")
                             propTypeName = propTypeName.Substring(0, propTypeName.Length - 2);
-                        propTypeName = "KnockoutObservableArray<" + propTypeName + ">";
+                        propTypeName = "ko.ObservableArray<" + propTypeName + ">";
                     }
                     else
-                        propTypeName = "KnockoutObservable<" + propTypeName + ">";
+                        propTypeName = "ko.Subscribable<" + propTypeName + ">";
                     sb.AppendLineIndented($"{this.GetPropertyName(property)}: {propTypeName};");
                 }
             }
